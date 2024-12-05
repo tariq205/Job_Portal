@@ -1,21 +1,23 @@
 const express = require('express');
-const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
 const dotenv = require('dotenv');
-const connectDB = require('./Config/db');
-const cors = require('cors');  
+const cookieParser = require('cookie-parser');
+const connectDB = require('./config/db');
 const authRoutes = require('./routes/authRoutes');
-const fileRoutes = require('./routes/fileRoutes');
+const http = require('http');
+const socketIo = require('socket.io');
 dotenv.config();
-const app = express();
-// Connect to MongoDB
 connectDB();
-// Middleware
-app.use(express.json());
-app.use(bodyParser.json());
-app.use('/api', fileRoutes);
-app.use('/api/auth', authRoutes);
 
+const app = express();
+app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
+app.set('view engine', 'ejs');
 
-// Start server
+// Use routes
+app.use('/', authRoutes);
+
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+app.listen(PORT, () => {
+    console.log(`Server running on http://localhost:${PORT}`);
+});

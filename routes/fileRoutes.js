@@ -1,5 +1,5 @@
 const express = require('express');
-const multer = require('../middlewares/multerConfig');  // Import Multer configuration
+const multer = require('../middleware/multerConfig');  // Import Multer configuration
 const { uploadFile, getFile } = require('../controllers/fileController');  // Controller methods
 
 const router = express.Router();
