@@ -6,17 +6,17 @@ exports.register = async (req, res) => {
     const { username, password, confirmPassword } = req.body;
 
     if (!username || !password || !confirmPassword) {
-        return res.redirect('/register?message=All fields are required');
+        return res.redirect('/?message=All fields are required');
     }
 
     if (password !== confirmPassword) {
-        return res.redirect('/register?message=Passwords do not match');
+        return res.redirect('/?message=Passwords do not match');
     }
 
     try {
         const userExists = await User.findOne({ username });
         if (userExists) {
-            return res.redirect('/register?message=User already exists');
+            return res.redirect('/?message=User already exists');
         }
 
         const newUser = new User({ username, password });
@@ -25,7 +25,7 @@ exports.register = async (req, res) => {
         res.redirect('/login?message=Registration successful, please login');
     } catch (error) {
         console.error(error);
-        res.redirect('/register?message=Server error, please try again');
+        res.redirect('/?message=Server error, please try again');
     }
 };
 
@@ -42,7 +42,7 @@ exports.login = async (req, res) => {
         const token = jwt.sign({ id: user._id, username: user.username }, process.env.JWT_SECRET, { expiresIn: '1h' });
 
         res.cookie('token', token, { httpOnly: true });
-        res.redirect('/dashboard'); // Redirect to the dashboard/home page
+        res.redirect('/home'); // Redirect to the dashboard/home page
     } catch (error) {
         console.error(error);
         res.redirect('/login?message=Server error, please try again');

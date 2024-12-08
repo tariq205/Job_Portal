@@ -15,8 +15,8 @@ router.get('/login', (req, res) => {
 });
 
 // Render the dashboard (protected route)
-router.get('/dashboard', authenticateToken, (req, res) => {
-    res.render('dashboard', { username: req.user.username }); // Assuming req.user contains user data
+router.get('/home', authenticateToken, (req, res) => {
+    res.render('home', { username: req.user.username }); // Assuming req.user contains user data
 });
 
 // Handle register and login submissions

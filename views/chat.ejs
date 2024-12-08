@@ -1,0 +1,75 @@
+<%- include('layout', { title: 'AI Chat' }) %>
+
+<div class="chat-container">
+    <h1>AI Chat Prompt</h1>
+    <form action="/ai/chat" method="POST">
+        <label for="prompt">Enter your question:</label>
+        <textarea id="prompt" name="prompt" rows="4" placeholder="Type your question here..." required></textarea>
+        <button type="submit">Ask AI</button>
+    </form>
+
+    <% if (typeof response !== 'undefined') { %>
+        <div class="response-section">
+            <h2>AI's Response:</h2>
+            <p><%= response %></p>
+        </div>
+    <% } %>
+</div>
+
+<style>
+    .chat-container {
+        max-width: 600px;
+        margin: 20px auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        background-color: #f9f9f9;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    .chat-container h1 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    .chat-container form {
+        display: flex;
+        flex-direction: column;
+    }
+    .chat-container label {
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+    .chat-container textarea {
+        resize: none;
+        padding: 10px;
+        font-size: 16px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+    .chat-container button {
+        padding: 10px 15px;
+        font-size: 16px;
+        color: #fff;
+        background-color: #007bff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+    .chat-container button:hover {
+        background-color: #0056b3;
+    }
+    .response-section {
+        margin-top: 20px;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        background-color: #fff;
+    }
+    .response-section h2 {
+        margin-bottom: 10px;
+    }
+    .response-section p {
+        font-size: 16px;
+        color: #333;
+    }
+</style>
