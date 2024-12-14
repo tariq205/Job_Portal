@@ -33,7 +33,7 @@ exports.uploadFile = async (req, res) => {
   }
 };
 
-// Retrieve file handler (for downloading using token)
+// Retrieve file handler(for downloading using token)
 exports.getFile = async (req, res) => {
     try {
       // Decode the token to get the file ID
