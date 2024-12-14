@@ -1,4 +1,4 @@
-Auther Muhammad Tariq Khan
+Author Muhammad Tariq Khan
 # Project README
 
 This project provides a backend implementation for handling user registration, login, contact form submission, and secure PDF file management with Node.js, Express.js, and MongoDB. Below are the detailed features and instructions for running the project.
