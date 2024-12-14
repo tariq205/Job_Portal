@@ -9,12 +9,12 @@ exports.submitForm = async (req, res) => {
         const contactData = new Contact({ name, email, message });
         await contactData.save();
 
-        // Email options for the user
+        // Email options 
         const userMailOptions = {
             from: 'muhammadtariq.wali2@gmail.com', // Replace with your email
             to: email,
             subject: 'Thank You for Your Feedback',
-            text: `Dear ${name},\n\nThank you for your feedback. Here's what you said:\n"${message}"\n\nBest regards,\nYour Team`,
+            text: `Dear ${name},\n\nThank you for your feedback. Here's what you said:\n"${message}"\n\nBest regards,\nMuhammad Tariq`,
         };
 
         // Email options for the admin

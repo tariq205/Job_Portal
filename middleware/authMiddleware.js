@@ -1,7 +1,8 @@
 const jwt = require('jsonwebtoken');
 
 exports.authenticateToken = (req, res, next) => {
-    const token = req.cookies.token; // Assuming token is stored in cookies
+    // Retrieve token from cookies or authorization header
+    const token = req.cookies.token || req.headers['authorization']?.split(' ')[1];
 
     if (!token) {
         return res.redirect('/login?message=Please login first');
